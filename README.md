@@ -151,7 +151,7 @@ The application provides user authentication, palm image upload, AI-based analys
 
 # 📂 Project Structure
 
-```
+
 
 PalmAI/
 │
@@ -208,4 +208,144 @@ PalmAI/
 │
 ├── .gitignore
 └── README.md
-              
+
+
+## 🔄 Application Flow
+
+### 1. User Registration
+
+  User
+  │
+  ▼
+Registration Form
+  │
+  ▼
+POST /api/auth/register
+  │
+  ▼
+Express Controller
+  │
+  ▼
+Password Hashing using bcrypt
+  │
+  ▼
+SQLite users table
+  │
+  ▼
+User Created
+
+
+### 2. User Login
+
+User
+  │
+  ▼
+Email + Password
+  │
+  ▼
+POST /api/auth/login
+  │
+  ▼
+Find User in SQLite
+  │
+  ▼
+Compare Password
+  │
+  ▼
+Generate JWT Token
+  │
+  ▼
+Send Token to Frontend
+
+
+### 3. Palm Image Upload
+
+User selects image
+       │
+       ▼
+React Frontend
+       │
+       ▼
+POST /api/upload
+       │
+       ▼
+Express + Multer
+       │
+       ▼
+Image Validation
+       │
+       ▼
+Image Stored / Processed
+       │
+       ▼
+Image URL returned
+
+### 4. Palm Image Analysis
+
+Palm Image
+    │
+    ▼
+React Frontend
+    │
+    ▼
+POST /api/analyze
+    │
+    ▼
+Backend Controller
+    │
+    ▼
+Base64 Image
+    │
+    ▼
+Gemini Multimodal API
+    │
+    ▼
+AI Image Analysis
+    │
+    ▼
+Structured JSON Response
+    │
+    ▼
+SQLite Reports Table
+    │
+    ▼
+Frontend Report
+
+
+### 🤖 Google Gemini AI Integration
+
+PalmAI uses Google's Gemini API for multimodal image analysis.
+
+The backend sends two main inputs to Gemini:
+1.Text prompt
+2.Palm image
+
+Example:
+
+const response = await ai.models.generateContent({
+    model: process.env.GEMINI_MODEL,
+
+    contents: [
+        {
+            role: "user",
+
+            parts: [
+                {
+                    text: PALM_READING_SYSTEM_PROMPT
+                },
+
+                {
+                    inlineData: {
+                        mimeType: mimeType,
+                        data: base64Image
+                    }
+                }
+            ]
+        }
+    ]
+});
+
+
+Gemini receives the image together with the instructions and returns the requested analysis.
+
+
