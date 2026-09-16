@@ -151,8 +151,9 @@ The application provides user authentication, palm image upload, AI-based analys
 
 # 📂 Project Structure
 
-```text
-            PalmAI/
+```
+
+PalmAI/
 │
 ├── backend/
 │   │
