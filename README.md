@@ -146,3 +146,65 @@ The application provides user authentication, palm image upload, AI-based analys
                          ┌──────────────────┐
                          │ Report History   │
                          └──────────────────┘
+
+
+
+# 📂 Project Structure
+
+```text
+            PalmAI/
+│
+├── backend/
+│   │
+│   ├── config/
+│   │   └── db.js
+│   │
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   ├── analyzeController.js
+│   │   ├── historyController.js
+│   │   ├── profileController.js
+│   │   ├── reportController.js
+│   │   └── uploadController.js
+│   │
+│   ├── middlewares/
+│   │   ├── auth.js
+│   │   ├── errorHandler.js
+│   │   └── rateLimiter.js
+│   │
+│   ├── models/
+│   │   ├── User.js
+│   │   └── Report.js
+│   │
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   ├── uploadRoutes.js
+│   │   ├── analyzeRoutes.js
+│   │   ├── historyRoutes.js
+│   │   ├── profileRoutes.js
+│   │   └── reportRoutes.js
+│   │
+│   ├── services/
+│   │   └── geminiService.js
+│   │
+│   ├── uploads/
+│   │
+│   ├── utils/
+│   │   └── asyncHandler.js
+│   │
+│   ├── .env
+│   ├── .env.example
+│   ├── package.json
+│   ├── package-lock.json
+│   └── server.js
+│
+├── frontend/
+│   │
+│   ├── public/
+│   ├── src/
+│   ├── package.json
+│   └── package-lock.json
+│
+├── .gitignore
+└── README.md
+              
